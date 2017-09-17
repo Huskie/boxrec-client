@@ -54,10 +54,10 @@ const boxrecClient = {
             // Extract the data we need
             boxer.dob = $('span[itemprop="birthDate"]').text(),
             boxer.name = $('h1').text();
-            boxer.wins = $('.profileWLD .bgW').text(),
+            boxer.wins = parseInt($('.profileWLD .bgW').text()),
             boxer.winsKO = parseInt($('.profileWLD .textWon').text()),
-            boxer.draws = $('.profileWLD .bgD').text(),
-            boxer.losses = $('.profileWLD .bgL').text(),
+            boxer.draws = parseInt($('.profileWLD .bgD').text()),
+            boxer.losses = parseInt($('.profileWLD .bgL').text()),
             boxer.lossesKO = parseInt($('.profileWLD .textLost').text()),
 
             console.log(boxer);
