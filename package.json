@@ -17,7 +17,7 @@
     "javascript",
     "js"
   ],
-  "author": "Darren Huskie",
+  "author": "Darren Huskie <darren@darrenhuskie.com> (http://darrenhuskie.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Huskie/boxrec-client/issues"
