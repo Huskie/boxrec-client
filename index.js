@@ -66,6 +66,6 @@ const boxrecClient = {
     }
 }
 
-boxrecClient.getBoxerById('356831');
+boxrecClient.getBoxerById('474');
 
 module.exports = boxrecClient;

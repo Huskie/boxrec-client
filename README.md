@@ -12,29 +12,28 @@ npm install
 Require the module and then use the following command to request a boxer's details:
 
 ```javascript
-boxrecClient.getBoxerById(356831); // Gennady Golovkin
+boxrecClient.getBoxerById('474'); // Iron Mike
 ```
 
 The returned boxer data will be in the following JSON format
 
 ```javascript
 {
-    alias: 'GGG',
-    bouts: 38,
-    rounds: 184,
-    knockoutPercentage: 87,
-    nationality: 'Kazakhstan',
-    debut: '2006-05-06',
-    weightDivision: 'middleweight',
+    alias: 'Iron',
+    bouts: 58,
+    rounds: 215,
+    knockoutPercentage: 76,
+    nationality: 'USA',
+    debut: '1985-03-06',
+    weightDivision: 'heavyweight',
     stance: 'orthodox',
-    dob: '1982-04-08',
-    name: 'Gennady Golovkin',
-    wins: '37',
-    winsKO: 33,
-    draws: '1',
-    losses: '0',
-    lossesKO: 0
-}
+    dob: '1966-06-30',
+    name: 'Mike Tyson',
+    wins: '50',
+    winsKO: 44,
+    draws: '0',
+    losses: '6',
+    lossesKO: 5 }
 ```
 
 ### To Do
