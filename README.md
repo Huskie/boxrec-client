@@ -29,11 +29,12 @@ The returned boxer data will be in the following JSON format
     stance: 'orthodox',
     dob: '1966-06-30',
     name: 'Mike Tyson',
-    wins: '50',
+    wins: 50,
     winsKO: 44,
-    draws: '0',
-    losses: '6',
-    lossesKO: 5 }
+    draws: 0,
+    losses: 6,
+    lossesKO: 5
+}
 ```
 
 ### To Do
