@@ -74,13 +74,7 @@ const boxrecClient = {
         };
 
         // Call our get boxer function, which returns a promise
-        return getBoxer(id).then(function(response) {
-            // We got the boxer details, return them
-            return response;
-        }).catch (function (error) {
-            // Something went wrong, error out
-            console.error('getBoxerById function failed: ', error);
-        });
+        return getBoxer(id);
     }
 }
 
