@@ -1,6 +1,6 @@
 {
   "name": "boxrec-client",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A BoxRec client which fetches data from the BoxRec boxing website via web scraping in Node.js",
   "main": "index.js",
   "scripts": {
