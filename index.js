@@ -88,4 +88,4 @@ const boxrecClient = {
 // Uncomment this to test the function
 // boxrecClient.getBoxerById('474');
 
-module.exports = boxrecClient;
+export default boxrecClient;

@@ -9,7 +9,13 @@ Firstly, install project dependencies
 npm install
 ```
 
-Require the module and then use the following command to request a boxer's details:
+Require the module using the following command:
+
+```javascript
+import boxrecClient from 'boxrec-client';
+```
+
+Now use the following command to request a boxer's details:
 
 ```javascript
 boxrecClient.getBoxerById('474'); // Iron Mike
