@@ -74,7 +74,7 @@ const boxrecClient = {
         };
 
         // Call our get boxer function, which returns a promise
-        getBoxer(id).then(function(response) {
+        return getBoxer(id).then(function(response) {
             // We got the boxer details, return them
             return response;
         }).catch (function (error) {
@@ -85,6 +85,8 @@ const boxrecClient = {
 }
 
 // Uncomment this to test the function
-// boxrecClient.getBoxerById('474');
+//boxrecClient.getBoxerById('474').then(boxer => {
+//    console.log(boxer);
+//});
 
 module.exports = boxrecClient;
