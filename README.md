@@ -15,10 +15,12 @@ Require the module using the following command:
 var boxrecClient = require('boxrec-client');
 ```
 
-Now use the following command to request a boxer's details:
+Now use the following command to request a boxer's details. The function returns a promise which will resolve with the boxer details when fetch is complete:
 
 ```javascript
-boxrecClient.getBoxerById('474'); // Iron Mike
+boxrecClient.getBoxerById('474').then(boxer => {
+    console.log(boxer);
+});
 ```
 
 The returned boxer data will be in the following JSON format
