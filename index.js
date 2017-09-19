@@ -76,7 +76,6 @@ const boxrecClient = {
         // Call our get boxer function, which returns a promise
         getBoxer(id).then(function(response) {
             // We got the boxer details, return them
-            console.log(response);
             return response;
         }).catch (function (error) {
             // Something went wrong, error out

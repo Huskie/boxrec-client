@@ -12,7 +12,7 @@ npm install
 Require the module using the following command:
 
 ```javascript
-import boxrecClient from 'boxrec-client';
+var boxrecClient = require('boxrec-client');
 ```
 
 Now use the following command to request a boxer's details:
