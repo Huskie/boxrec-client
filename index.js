@@ -6,66 +6,86 @@ const boxrecClient = {
 
     getBoxerById: id => {
 
-        // Parameter validation
-        if (typeof id !== 'string') {
-            return false;
-        }
+        // Define the boxer fetch function, returning a promise
+        const getBoxer = id => {
 
-        request('http://boxrec.com/en/boxer/' + id, function (error, response, body) {
-            //console.log('error:', error);
-            //console.log('statusCode:', response && response.statusCode);
-            //console.log('body:', body);
+            // Return a new promise
+            return new Promise(function(resolve, reject) {
 
-            // Load the page HTML into Cheerio
-            var $ = cheerio.load(body);
+                // If the ID is not a string, reject the promise
+                if (typeof id !== 'string') {
+                    reject('Invalid id parameter. It must be a string');
+                }
 
-            var boxer = {
-                alias: '',
-                bouts: '',
-            };
+                request('http://boxrec.com/en/boxer/' + id, (error, response, body) => {
 
-            $('.profileTable .rowTable .rowLabel b').filter(function() {
-                if($(this).text().indexOf('alias') > -1) {
-                    boxer.alias = $(this).parent().next().text().trim();
-                }
-                if($(this).text().indexOf('bouts') > -1) {
-                    boxer.bouts = parseInt($(this).parent().next().text().trim());
-                }
-                if($(this).text().indexOf('debut') > -1) {
-                    boxer.debut = $(this).parent().next().text().trim();
-                }
-                if($(this).text().indexOf('nationality') > -1) {
-                    boxer.nationality = $(this).parent().next().text().trim();
-                }
-                if($(this).text().indexOf('KOs') > -1) {
-                    boxer.knockoutPercentage = parseInt($(this).parent().next().text());
-                }
-                if($(this).text().indexOf('rounds') > -1) {
-                    boxer.rounds = parseInt($(this).parent().next().text());
-                }
-                if($(this).text().indexOf('stance') > -1) {
-                    boxer.stance = $(this).parent().next().text().trim();
-                }
-                if($(this).text().indexOf('division') > -1) {
-                    boxer.weightDivision = $(this).parent().next().text().trim();
-                }
+                    // If the request failed, reject the promise
+                    if (error) {
+                        reject(error);
+                    }
+
+                    // Load the page HTML into Cheerio
+                    var $ = cheerio.load(body);
+
+                    var boxer = {
+                        alias: '',
+                        bouts: '',
+                    };
+
+                    $('.profileTable .rowTable .rowLabel b').filter(function() {
+                        if($(this).text().indexOf('alias') > -1) {
+                            boxer.alias = $(this).parent().next().text().trim();
+                        }
+                        if($(this).text().indexOf('bouts') > -1) {
+                            boxer.bouts = parseInt($(this).parent().next().text().trim());
+                        }
+                        if($(this).text().indexOf('debut') > -1) {
+                            boxer.debut = $(this).parent().next().text().trim();
+                        }
+                        if($(this).text().indexOf('nationality') > -1) {
+                            boxer.nationality = $(this).parent().next().text().trim();
+                        }
+                        if($(this).text().indexOf('KOs') > -1) {
+                            boxer.knockoutPercentage = parseInt($(this).parent().next().text());
+                        }
+                        if($(this).text().indexOf('rounds') > -1) {
+                            boxer.rounds = parseInt($(this).parent().next().text());
+                        }
+                        if($(this).text().indexOf('stance') > -1) {
+                            boxer.stance = $(this).parent().next().text().trim();
+                        }
+                        if($(this).text().indexOf('division') > -1) {
+                            boxer.weightDivision = $(this).parent().next().text().trim();
+                        }
+                    });
+
+                    // Extract the data we need
+                    boxer.dob = $('span[itemprop="birthDate"]').text(),
+                    boxer.name = $('h1').text();
+                    boxer.wins = parseInt($('.profileWLD .bgW').text()),
+                    boxer.winsKO = parseInt($('.profileWLD .textWon').text()),
+                    boxer.draws = parseInt($('.profileWLD .bgD').text()),
+                    boxer.losses = parseInt($('.profileWLD .bgL').text()),
+                    boxer.lossesKO = parseInt($('.profileWLD .textLost').text()),
+
+                    resolve(boxer);
+                });
             });
+        };
 
-            // Extract the data we need
-            boxer.dob = $('span[itemprop="birthDate"]').text(),
-            boxer.name = $('h1').text();
-            boxer.wins = parseInt($('.profileWLD .bgW').text()),
-            boxer.winsKO = parseInt($('.profileWLD .textWon').text()),
-            boxer.draws = parseInt($('.profileWLD .bgD').text()),
-            boxer.losses = parseInt($('.profileWLD .bgL').text()),
-            boxer.lossesKO = parseInt($('.profileWLD .textLost').text()),
-
-            console.log(boxer);
-            return boxer;
+        // Call our get boxer function, which returns a promise
+        getBoxer(id).then(function(response) {
+            // We got the boxer details, return them
+            console.log(response);
+            return response;
+        }).catch (function (error) {
+            // Something went wrong, error out
+            console.error('getBoxerById function failed: ', error);
         });
     }
 }
 
-boxrecClient.getBoxerById('474');
+// Uncomment this to test the function
+// boxrecClient.getBoxerById('474');
 
 module.exports = boxrecClient;
