@@ -45,7 +45,5 @@ The returned boxer data will be in the following JSON format
 
 ### To Do
 
-* Tidy up boxer data collection
 * Allow boxers to be queried by name in addition to ID
-* Make the client available as an npm module
 
