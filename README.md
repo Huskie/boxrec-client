@@ -6,7 +6,7 @@ A BoxRec client which fetches data from the BoxRec boxing website via web scrapi
 Firstly, install project dependencies
 
 ```javascript
-npm install
+npm install boxrec-client --save-dev
 ```
 
 Require the module using the following command:
@@ -47,5 +47,6 @@ The returned boxer data will be in the following JSON format
 
 ### To Do
 
+* Add tests
 * Allow boxers to be queried by name in addition to ID
 
