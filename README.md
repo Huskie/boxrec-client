@@ -3,7 +3,7 @@ A BoxRec client which fetches data from the BoxRec boxing website via web scrapi
 
 ## To run
 
-Firstly, install project dependencies
+Firstly, install the module
 
 ```javascript
 npm install boxrec-client --save-dev
