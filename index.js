@@ -93,7 +93,7 @@ const boxrecClient = {
 };
 
 // Uncomment this to test the function
-// boxrecClient.getBoxerById('348759').then((boxer) => {
+// boxrecClient.getBoxerById('474').then((boxer) => {
 //   console.log(boxer);
 // });
 
