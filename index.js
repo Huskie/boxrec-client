@@ -88,44 +88,44 @@ const boxrecClient = {
 
         let fight = {};
 
+        // For each fight in the boxer's record
         $('#listBoutsResults, tr.drawRowBorder').each((i, elem) => {
-          // Reset fight
+          
+          // Reset fight variable
           fight = {};
 
+          // For each table cell in this fight
           elem.children.forEach((child, index) => {
-            // Date
-            if (index === 1) {
-              fight.date = $(child).text().trim();
-            }
 
-            // Opponent
-            if (index === 3) {
-              fight.opponent = $(child).children('a').text().trim();
-            }
+            // Switch the loop index to retrieve various fight props
+            switch (index) {
 
-            fight.opponentForm = '';
+              // Date
+              case 1:
+                  fight.date = $(child).text().trim();
+                break;
 
-            // Opponent form
-            if (index === 5) {
-              //console.log($(child).contents('.last6'));
-              //fight.opponentForm += $(child).contents('.last6').attr('class').split(' ').pop();
-            }
+              // Opponent
+              case 3:
+                fight.opponent = $(child).children('a').text().trim();
+                break;
 
-            // Venue
-            if (index === 6) {
-              fight.country = $(child).children('.flag').attr('class').split(' ').pop();
-              fight.venue = $(child).text().trim();
-            }
+              // Venue
+              case 6:
+                fight.country = $(child).children('.flag').attr('class').split(' ').pop();
+                fight.venue = $(child).text().trim();
+                break;
 
-            // Result
-            if (index === 7) {
-              fight.result = $(child).text().trim();
-            }
+              // Result
+              case 7:
+                fight.result = $(child).text().trim();
+                break;
 
-            // Outcome
-            if (index === 8) {
-              fight.outcome = $(child).text().split('\n')[0].trim();
-              fight.outcomeRound = $(child).text().split('\n')[2].trim();
+              // Outcome
+              case 8:
+                fight.outcome = $(child).text().split('\n')[0].trim();
+                fight.round = $(child).text().split('\n')[2].trim();
+                break;
             }
           });
 
