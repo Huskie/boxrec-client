@@ -83,6 +83,57 @@ const boxrecClient = {
         boxer.losses = parseInt($('.profileWLD .bgL').text(), 10);
         boxer.lossesKO = parseInt($('.profileWLD .textLost').text(), 10);
 
+        // Fight record
+        boxer.fights = [];
+
+        let fight = {};
+
+        // For each fight in the boxer's record
+        $('#listBoutsResults, tr.drawRowBorder').each((i, elem) => {
+          
+          // Reset fight variable
+          fight = {};
+
+          // For each table cell in this fight
+          elem.children.forEach((child, index) => {
+
+            // Switch the loop index to retrieve various fight props
+            switch (index) {
+
+              // Date
+              case 1:
+                  fight.date = $(child).text().trim();
+                break;
+
+              // Opponent
+              case 3:
+                fight.opponent = $(child).children('a').text().trim();
+                break;
+
+              // Venue
+              case 6:
+                fight.country = $(child).children('.flag').attr('class').split(' ').pop();
+                fight.venue = $(child).text().trim();
+                break;
+
+              // Result
+              case 7:
+                fight.result = $(child).text().trim();
+                break;
+
+              // Outcome
+              case 8:
+                fight.outcome = $(child).text().split('\n')[0].trim();
+                fight.round = $(child).text().split('\n')[2].trim();
+                break;
+            }
+          });
+
+          // Add fight to fights array
+          boxer.fights.push(fight);
+        });
+
+
         resolve(boxer);
       });
     });
@@ -93,8 +144,8 @@ const boxrecClient = {
 };
 
 // Uncomment this to test the function
-// boxrecClient.getBoxerById('474').then((boxer) => {
-//   console.log(boxer);
-// });
+boxrecClient.getBoxerById('659461').then((boxer) => {
+  console.log(boxer);
+});
 
 module.exports = boxrecClient;
