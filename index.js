@@ -83,6 +83,57 @@ const boxrecClient = {
         boxer.losses = parseInt($('.profileWLD .bgL').text(), 10);
         boxer.lossesKO = parseInt($('.profileWLD .textLost').text(), 10);
 
+        // Fight record
+        boxer.fights = [];
+
+        let fight = {};
+
+        $('#listBoutsResults, tr.drawRowBorder').each((i, elem) => {
+          // Reset fight
+          fight = {};
+
+          elem.children.forEach((child, index) => {
+            // Date
+            if (index === 1) {
+              fight.date = $(child).text().trim();
+            }
+
+            // Opponent
+            if (index === 3) {
+              fight.opponent = $(child).children('a').text().trim();
+            }
+
+            fight.opponentForm = '';
+
+            // Opponent form
+            if (index === 5) {
+              //console.log($(child).contents('.last6'));
+              //fight.opponentForm += $(child).contents('.last6').attr('class').split(' ').pop();
+            }
+
+            // Venue
+            if (index === 6) {
+              fight.country = $(child).children('.flag').attr('class').split(' ').pop();
+              fight.venue = $(child).text().trim();
+            }
+
+            // Result
+            if (index === 7) {
+              fight.result = $(child).text().trim();
+            }
+
+            // Outcome
+            if (index === 8) {
+              fight.outcome = $(child).text().split('\n')[0].trim();
+              fight.outcomeRound = $(child).text().split('\n')[2].trim();
+            }
+          });
+
+          // Add fight to fights array
+          boxer.fights.push(fight);
+        });
+
+
         resolve(boxer);
       });
     });
@@ -93,8 +144,8 @@ const boxrecClient = {
 };
 
 // Uncomment this to test the function
-// boxrecClient.getBoxerById('474').then((boxer) => {
-//   console.log(boxer);
-// });
+boxrecClient.getBoxerById('659461').then((boxer) => {
+  console.log(boxer);
+});
 
 module.exports = boxrecClient;
