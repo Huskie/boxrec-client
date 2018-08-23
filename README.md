@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/boxrec-client.svg)](https://badge.fury.io/js/boxrec-client)
+
 # boxrec-client 🥊
 A BoxRec client which fetches data from the BoxRec boxing website via web scraping in Node.js. Fetches return promise objects which will resolve with the fetched data if successful.
 
